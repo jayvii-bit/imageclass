@@ -18,9 +18,13 @@ if uploaded_file is not None:
     image = transform(image).unsqueeze(0)  # Add batch dimension
     
 
-    # Load model using pickle
-    #with open("model.pkl", "rb") as f:  
-        #model = pickle.load(f)
+    class CNNModel(torch.nn.Module):
+    
+        def __init__(self):
+            super(CNNModel, self).__init__()          
+
+        def forward(self, x):
+            return x
 
     model = joblib.load(open('model.pkl', 'rb'))
     
