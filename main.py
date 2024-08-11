@@ -33,4 +33,4 @@ if uploaded_file is not None:
     with torch.no_grad():
         output = model(image)
         _, predicted = torch.max(output.data, 1)
-        st.write(f'Predicted Category: {predicted.sum()}')
+        st.write(f'Predicted Category: {predicted.median()}')
