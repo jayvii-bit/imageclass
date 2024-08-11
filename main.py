@@ -2,7 +2,6 @@ import streamlit as st
 from PIL import Image
 import torchvision.transforms as transforms
 import torch
-import pickle
 import joblib
 
 st.title('Image Classification with CNN')
@@ -17,20 +16,26 @@ if uploaded_file is not None:
     transform = transforms.Compose([transforms.Resize((150, 150)), transforms.ToTensor()])
     image = transform(image).unsqueeze(0)  # Add batch dimension
     
-
     class CNNModel(torch.nn.Module):
-    
         def __init__(self):
-            super(CNNModel, self).__init__()          
+            super(CNNModel, self).__init__()
+            
 
         def forward(self, x):
+            
             return x
 
     model = joblib.load(open('model.pkl', 'rb'))
+  
+    # Class labels
+    class_names = ['buildings', 'forest', 'glacier', 'mountain', 'sea', 'street']
     
     # Perform prediction
     model.eval()
     with torch.no_grad():
         output = model(image)
         _, predicted = torch.max(output.data, 1)
-        st.write(f'Predicted Category: {predicted.median()}')
+        predicted_label = class_names[predicted.median()]
+
+        # Display only the category name
+        st.write(f'Predicted Category: {predicted_label}')
