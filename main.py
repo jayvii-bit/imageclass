@@ -3,6 +3,7 @@ from PIL import Image
 import torchvision.transforms as transforms
 import torch
 import pickle
+import joblib
 
 st.title('Image Classification with CNN')
 
