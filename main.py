@@ -18,8 +18,10 @@ if uploaded_file is not None:
     
 
     # Load model using pickle
-    with open("model.pkl", "rb") as f:  
-        model = pickle.load(f)
+    #with open("model.pkl", "rb") as f:  
+        #model = pickle.load(f)
+
+    model = joblib.load(open('model.pkl', 'rb'))
     
     # Perform prediction
     model.eval()
