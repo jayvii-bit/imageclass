@@ -1,5 +1,5 @@
 streamlit==1.36.0
 pandas
-pickle
+joblib
 scikit-learn
 xgboost==2.0.2
